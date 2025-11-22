@@ -3,6 +3,7 @@ package com.example.winnipegtransitappbutbetter
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,7 +43,10 @@ fun BusCard(modifier: Modifier, navController: NavHostController){
             modifier = modifier
                 .background((Color.DarkGray))
                 .fillMaxWidth()
-                .padding(15.dp),
+                .padding(15.dp)
+                .clickable{
+                    navController.navigate("busdetail")
+                }
         ) {
             Text(
                 text = "77 Crosstown North",

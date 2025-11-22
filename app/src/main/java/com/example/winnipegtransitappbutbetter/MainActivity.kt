@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,7 +54,6 @@ class MainActivity : ComponentActivity() {
                             StopsScreen(
                                 modifier = Modifier,
                                 navController = navController
-
                             )
                         }
 
@@ -63,9 +61,21 @@ class MainActivity : ComponentActivity() {
                             BusesScreen(
                                 modifier = Modifier,
                                 navController = navController
-
                             )
+                        }
 
+                        composable(Destination.BusDetail.route) {
+                            BusDetailScreen(
+                                modifier = Modifier,
+                                navController = navController
+                            )
+                        }
+
+                        composable(Destination.StopDetail.route) {
+                            StopDetailScreen(
+                                modifier = Modifier,
+                                navController = navController
+                            )
                         }
                     }
                 }

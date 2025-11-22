@@ -2,6 +2,7 @@ package com.example.winnipegtransitappbutbetter
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+
+// This will eventually show nearby bus stops
 
 @Composable
 fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) {
@@ -36,7 +39,10 @@ fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) 
             modifier = Modifier
                 .background((Color.DarkGray))
                 .fillMaxWidth()
-                .padding(15.dp),
+                .padding(15.dp)
+                .clickable{
+                    navController.navigate("stopdetail")
+                }
         ) {
             Text(
                 text = "Stop 20254 - Eastbound Portage at Rouge",
