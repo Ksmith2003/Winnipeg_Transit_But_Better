@@ -1,6 +1,8 @@
 package com.example.winnipegtransitappbutbetter
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import org.maplibre.compose.camera.CameraPosition
 import org.maplibre.compose.camera.rememberCameraState
 import org.maplibre.compose.map.MaplibreMap
@@ -10,7 +12,9 @@ import org.maplibre.spatialk.geojson.Position
 
 
 @Composable
-fun TheMap() {
+fun MapScreen(
+    navController: NavHostController,
+) {
     val camera =
         rememberCameraState(
             firstPosition =

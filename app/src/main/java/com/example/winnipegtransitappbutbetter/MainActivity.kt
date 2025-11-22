@@ -4,13 +4,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.winnipegtransitappbutbetter.Destinations.Destination
 import com.example.winnipegtransitappbutbetter.ui.theme.WinnipegTransitAppButBetterTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +24,52 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            TheMap()
+            WinnipegTransitAppButBetterTheme {
+                val navController = rememberNavController()
+
+                Scaffold(
+                    bottomBar = {
+                        BottomNav(navController = navController)
+                    }
+                ) { paddingValues ->
+                    paddingValues.calculateBottomPadding()
+                    Spacer(modifier = Modifier.padding(10.dp))
+                    NavHost(
+                        navController = navController,
+                        startDestination = Destination.Map.route,
+                        modifier = Modifier.padding(paddingValues)
+                    ) {
+                        composable(Destination.Map.route) {
+                            MapScreen(
+                                navController = navController,
+                            )
+                        }
+                        composable(Destination.Trip.route) {
+                            TripsScreen(
+                                modifier = Modifier,
+                                navController = navController,
+
+                                )
+                        }
+                        composable(Destination.Stop.route) {
+                            StopsScreen(
+                                modifier = Modifier,
+                                navController = navController
+
+                            )
+                        }
+
+                        composable(Destination.Bus.route) {
+                            BusesScreen(
+                                modifier = Modifier,
+                                navController = navController
+
+                            )
+
+                        }
+                    }
+                }
+            }
         }
     }
 }
