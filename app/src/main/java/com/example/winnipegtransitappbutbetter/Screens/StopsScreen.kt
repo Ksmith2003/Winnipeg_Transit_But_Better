@@ -1,4 +1,4 @@
-package com.example.winnipegtransitappbutbetter
+package com.example.winnipegtransitappbutbetter.Screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -33,6 +33,7 @@ fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) 
             text = "Bus Stops",
             modifier = Modifier,
             fontWeight = FontWeight.Bold,
+            color = (Color.White)
         )
 
         Row(
@@ -47,7 +48,8 @@ fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) 
             Text(
                 text = "Stop 20254 - Eastbound Portage at Rouge",
                 modifier = Modifier,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = (Color.White)
             )
         }
         Spacer(modifier = Modifier.padding(5.dp))
@@ -60,7 +62,8 @@ fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) 
             Text(
                 text = "Stop 20237 - Westbound Portage at Rouge",
                 modifier = Modifier,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = (Color.White)
             )
         }
     }

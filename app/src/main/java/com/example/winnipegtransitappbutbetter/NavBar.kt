@@ -29,7 +29,7 @@ fun BottomNav(navController: NavController){
                     launchSingleTop = true
                 }},
             icon = { Icon(painter = ic_trip, contentDescription = null)},
-            label = { Text(text= Destination.Trip.route) }
+            label = { Text(text= "Plan Trip") }
         )
         NavigationBarItem(
             selected = currentDestination?.route == Destination.Stop.route,
@@ -39,7 +39,7 @@ fun BottomNav(navController: NavController){
                     launchSingleTop = true
                 }},
             icon = { Icon(painter = ic_schedule, contentDescription = null)},
-            label = { Text(text= Destination.Stop.route) }
+            label = { Text(text= "Stops") }
         )
         NavigationBarItem(
             selected = currentDestination?.route == Destination.Bus.route,
@@ -49,7 +49,7 @@ fun BottomNav(navController: NavController){
                     launchSingleTop = true
                 }},
             icon = { Icon(painter = ic_bus, contentDescription = null)},
-            label = { Text(text= Destination.Bus.route) }
+            label = { Text(text= "Routes") }
         )
         NavigationBarItem(
             selected = currentDestination?.route == Destination.Map.route,
@@ -59,7 +59,7 @@ fun BottomNav(navController: NavController){
                     launchSingleTop = true
                 }},
             icon = { Icon(painter = ic_map, contentDescription = null)},
-            label = { Text(text= Destination.Map.route) }
+            label = { Text(text= "Map") }
         )
     }
 }

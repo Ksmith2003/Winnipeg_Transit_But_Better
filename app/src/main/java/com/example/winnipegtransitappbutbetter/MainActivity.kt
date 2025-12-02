@@ -16,6 +16,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.winnipegtransitappbutbetter.Destinations.Destination
+import com.example.winnipegtransitappbutbetter.Screens.BusDetailScreen
+import com.example.winnipegtransitappbutbetter.Screens.BusesScreen
+import com.example.winnipegtransitappbutbetter.Screens.MapScreen
+import com.example.winnipegtransitappbutbetter.Screens.StopDetailScreen
+import com.example.winnipegtransitappbutbetter.Screens.StopsScreen
+import com.example.winnipegtransitappbutbetter.Screens.TripsScreen
+import com.example.winnipegtransitappbutbetter.api.StopsManager
 import com.example.winnipegtransitappbutbetter.ui.theme.WinnipegTransitAppButBetterTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,6 +32,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             WinnipegTransitAppButBetterTheme {
                 val navController = rememberNavController()
+                val stopsService = StopsManager()
 
                 Scaffold(
                     bottomBar = {

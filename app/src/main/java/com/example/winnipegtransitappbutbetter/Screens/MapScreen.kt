@@ -1,7 +1,6 @@
-package com.example.winnipegtransitappbutbetter
+package com.example.winnipegtransitappbutbetter.Screens
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import org.maplibre.compose.camera.CameraPosition
 import org.maplibre.compose.camera.rememberCameraState
