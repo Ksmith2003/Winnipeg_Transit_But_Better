@@ -21,7 +21,7 @@ class StopsManager {
         getStops()
     }
     private fun getStops(){
-        val service = Api.retrofitService.getBusStops(lon = -97.138475, lat= 49.895493, api_key)
+        val service = Api.retrofitService.getBusStops(lon = -97.138475, lat= 49.895493, distance= 250, api_key)
 
 
         service.enqueue(object : retrofit2.Callback<StopData> {
