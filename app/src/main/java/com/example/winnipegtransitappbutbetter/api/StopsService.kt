@@ -3,6 +3,7 @@ package com.example.winnipegtransitappbutbetter.api
 
 import android.R
 import com.example.winnipegtransitappbutbetter.api.Model.StopData
+import com.example.winnipegtransitappbutbetter.api.Model.StopResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,5 +14,5 @@ interface StopsService {
     fun getBusStops(@Query("lon") lon: Double,
                     @Query("lat") lat: Double,
                     @Query("distance") distance: Int,
-                    @Query("api_key") apiKey: String) : Call<StopData>
+                    @Query("api_key") apiKey: String) : Call<StopResponse>
 }

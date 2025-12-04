@@ -6,12 +6,13 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.example.winnipegtransitappbutbetter.api.Model.StopData
+import com.example.winnipegtransitappbutbetter.api.Model.StopResponse
 import retrofit2.Call
 import retrofit2.Response
 
 class StopsManager {
     private var _stopsResponse= mutableStateOf<List<StopData>>(emptyList())
-    val api_key="6FBr9kNoJUqq7ixuxyfm"
+    val api_key="abbefkfsdfkjk"
 
     val stopsResponse: MutableState<List<StopData>>
         @Composable get() = remember {
@@ -24,21 +25,23 @@ class StopsManager {
         val service = Api.retrofitService.getBusStops(lon = -97.138475, lat= 49.895493, distance= 250, api_key)
 
 
-        service.enqueue(object : retrofit2.Callback<StopData> {
+        service.enqueue(object : retrofit2.Callback<StopResponse> {
             override fun onResponse(
-                call: Call<StopData?>,
-                response: Response<StopData?>
+                call: Call<StopResponse>,
+                response: Response<StopResponse>
             ) {
                 if (response.isSuccessful){
-                    Log.i("Data","Data is locked and loaded. ")
-
-                    _stopsResponse.value = (response.body()?.stops ?: emptyList()) as List<StopData>
-                    Log.i("DataStream", _stopsResponse.value.toString())
+                    val list = response.body()?.stops ?: emptyList()
+                    _stopsResponse.value = list
+                    Log.i("DataStream", list.toString())
+                }
+                else {
+                    Log.e("API", "Error: ${response.errorBody()?.string()}")
                 }
             }
 
             override fun onFailure(
-                call: Call<StopData?>,
+                call: Call<StopResponse>,
                 t: Throwable
             ) {
                 Log.d("error","${t.message}")

@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             WinnipegTransitAppButBetterTheme {
                 val navController = rememberNavController()
-                val stopsService = StopsManager()
+                val stopsManager = StopsManager()
 
                 Scaffold(
                     bottomBar = {
@@ -61,7 +61,8 @@ class MainActivity : ComponentActivity() {
                         composable(Destination.Stop.route) {
                             StopsScreen(
                                 modifier = Modifier,
-                                navController = navController
+                                navController = navController,
+                                stopsManager = stopsManager
                             )
                         }
 

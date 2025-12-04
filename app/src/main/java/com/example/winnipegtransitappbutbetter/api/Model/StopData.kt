@@ -4,6 +4,9 @@ package com.example.winnipegtransitappbutbetter.api.Model
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+data class StopResponse(
+    val stops: List<StopData>
+)
 @JsonClass(generateAdapter = true)
 data class StopData(
     @Json(name = "query-time")
