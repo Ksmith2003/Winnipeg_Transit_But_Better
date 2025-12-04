@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +29,7 @@ import com.example.winnipegtransitappbutbetter.api.StopsManager
 fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) {
     Column(
         modifier = Modifier
-            .border(1.dp, Color.Black, shape= RoundedCornerShape(10.dp))
+            .border(1.dp, Color.Black, shape = RoundedCornerShape(10.dp))
             .fillMaxSize()
             .padding(5.dp)
     ){
@@ -43,7 +45,7 @@ fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) 
                 .background((Color.DarkGray))
                 .fillMaxWidth()
                 .padding(15.dp)
-                .clickable{
+                .clickable {
                     navController.navigate("stopdetail")
                 }
         ) {
@@ -73,14 +75,18 @@ fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) 
 
 @Composable
 fun StopsScreen(navController: NavHostController, modifier: Modifier, stopsManager: StopsManager) {
+    val stops = stopsManager.stopsResponse
+
     Box(
         modifier
             .fillMaxSize()
             .background(Color.Black)
     ){
+
+
         BusStopCard(
             navController = navController,
-            modifier = Modifier
+            modifier = Modifier,
         )
 
     }
