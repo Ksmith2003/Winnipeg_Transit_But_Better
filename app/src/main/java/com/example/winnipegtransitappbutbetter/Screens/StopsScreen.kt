@@ -1,5 +1,6 @@
 package com.example.winnipegtransitappbutbetter.Screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -18,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.winnipegtransitappbutbetter.api.StopsManager
 
 // This will eventually show nearby bus stops
 
@@ -70,7 +72,7 @@ fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) 
 }
 
 @Composable
-fun StopsScreen(navController: NavHostController, modifier: Modifier.Companion) {
+fun StopsScreen(navController: NavHostController, modifier: Modifier, stopsManager: StopsManager) {
     Box(
         modifier
             .fillMaxSize()
@@ -78,7 +80,8 @@ fun StopsScreen(navController: NavHostController, modifier: Modifier.Companion) 
     ){
         BusStopCard(
             navController = navController,
-            modifier = modifier
+            modifier = Modifier
         )
+
     }
 }
