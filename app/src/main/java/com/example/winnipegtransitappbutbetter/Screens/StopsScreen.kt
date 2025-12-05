@@ -27,55 +27,6 @@ import com.example.winnipegtransitappbutbetter.api.StopsManager
 
 // This will eventually show nearby bus stops
 
-//@Composable
-//fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) {
-//    Column(
-//        modifier = Modifier
-//            .border(1.dp, Color.Black, shape = RoundedCornerShape(10.dp))
-//            .fillMaxSize()
-//            .padding(5.dp)
-//    ){
-//        Text(
-//            text = "Bus Stops",
-//            modifier = Modifier,
-//            fontWeight = FontWeight.Bold,
-//            color = (Color.White)
-//        )
-//
-//        Row(
-//            modifier = Modifier
-//                .background((Color.DarkGray))
-//                .fillMaxWidth()
-//                .padding(15.dp)
-//                .clickable {
-//                    navController.navigate("stopdetail")
-//                }
-//        ) {
-//            Text(
-//                text = "Stop 20254 - Eastbound Portage at Rouge",
-//                modifier = Modifier,
-//                fontWeight = FontWeight.Bold,
-//                color = (Color.White)
-//            )
-//        }
-//        Spacer(modifier = Modifier.padding(5.dp))
-//        Row(
-//            modifier = Modifier
-//                .background((Color.DarkGray))
-//                .fillMaxWidth()
-//                .padding(15.dp),
-//        ) {
-//            Text(
-//                text = "Stop 20237 - Westbound Portage at Rouge",
-//                modifier = Modifier,
-//                fontWeight = FontWeight.Bold,
-//                color = (Color.White)
-//            )
-//        }
-//    }
-//}
-
-
 private val List<Stop?>?.name: Any
     get() = this!!::class.java.simpleName
 
