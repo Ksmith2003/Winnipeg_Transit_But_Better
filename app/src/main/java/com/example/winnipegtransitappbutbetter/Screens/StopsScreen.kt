@@ -16,17 +16,20 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.winnipegtransitappbutbetter.api.Model.cow_data.Stop
+import com.example.winnipegtransitappbutbetter.api.Model.cow_data.StopData
 import com.example.winnipegtransitappbutbetter.api.StopsManager
 
 // This will eventually show nearby bus stops
 
 @Composable
-fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) {
+fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion, stop: Stop) {
     Column(
         modifier = Modifier
             .border(1.dp, Color.Black, shape = RoundedCornerShape(10.dp))
@@ -50,32 +53,35 @@ fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) 
                 }
         ) {
             Text(
-                text = "Stop 20254 - Eastbound Portage at Rouge",
+                //text = "Stop 20254 - Eastbound Portage at Rouge",
+                text = stop.name.toString(),
                 modifier = Modifier,
                 fontWeight = FontWeight.Bold,
                 color = (Color.White)
             )
         }
+
         Spacer(modifier = Modifier.padding(5.dp))
-        Row(
-            modifier = Modifier
-                .background((Color.DarkGray))
-                .fillMaxWidth()
-                .padding(15.dp),
-        ) {
-            Text(
-                text = "Stop 20237 - Westbound Portage at Rouge",
-                modifier = Modifier,
-                fontWeight = FontWeight.Bold,
-                color = (Color.White)
-            )
-        }
+//        Row(
+//            modifier = Modifier
+//                .background((Color.DarkGray))
+//                .fillMaxWidth()
+//                .padding(15.dp),
+//        ) {
+//            Text(
+//                text = "Stop 20237 - Westbound Portage at Rouge",
+//                modifier = Modifier,
+//                fontWeight = FontWeight.Bold,
+//                color = (Color.White)
+//            )
+//        }
     }
 }
 
 @Composable
 fun StopsScreen(navController: NavHostController, modifier: Modifier, stopsManager: StopsManager) {
-    val stops = stopsManager.stopsResponse
+    val stops = stopsManager.stopsResponse.value
+    Log.i("MJB", stops.toString())
 
     Box(
         modifier
@@ -83,11 +89,16 @@ fun StopsScreen(navController: NavHostController, modifier: Modifier, stopsManag
             .background(Color.Black)
     ){
 
-
-        BusStopCard(
-            navController = navController,
-            modifier = Modifier,
-        )
+        LazyColumn {
+            items(stops){
+                stop->
+                BusStopCard(
+                    navController = navController,
+                    modifier = Modifier,
+                    stop
+                )
+            }
+        }
 
     }
 }

@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.example.winnipegtransitappbutbetter.api.Model.cow_data.Stop
 
 import com.example.winnipegtransitappbutbetter.api.Model.cow_data.StopData
 
@@ -15,10 +16,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class StopsManager {
-    private var _stopsResponse= mutableStateOf<List<StopData>>(emptyList())
-    val api_key="xxxxx"
+    private var _stopsResponse= mutableStateOf<List<Stop>>(emptyList())
+    val api_key="-LkeFUZj8srrBV0Hj4fy"
 
-    val stopsResponse: MutableState<List<StopData>>
+    val stopsResponse: MutableState<List<Stop>>
         @Composable get() = remember {
             _stopsResponse
         }
@@ -39,8 +40,10 @@ class StopsManager {
                 response: Response<StopData?>
             ) {
                 if (response.isSuccessful){
-                    val list = response.body()?.stops ?: emptyList()
-                    Log.i("DataStream", list.toString())
+                    //val list = response.body()?.stops ?: emptyList()
+
+                    _stopsResponse.value = (response.body()?.stops ?: emptyList()) as List<Stop>
+                    Log.i("DataStream", _stopsResponse.value.toString())
                 }
                 else {
                     Log.e("API", "Error: ${response.errorBody()?.string()}")
