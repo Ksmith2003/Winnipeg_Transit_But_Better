@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.example.winnipegtransitappbutbetter.BuildConfig
 import com.example.winnipegtransitappbutbetter.api.Model.cow_data.Stop
 
 import com.example.winnipegtransitappbutbetter.api.Model.cow_data.StopData
@@ -17,7 +18,7 @@ import retrofit2.Response
 
 class StopsManager {
     private var _stopsResponse= mutableStateOf<List<Stop>>(emptyList())
-    val api_key="replace my api key"
+    val api_key= BuildConfig.WT_API_KEY
 
     val stopsResponse: MutableState<List<Stop>>
         @Composable get() = remember {

@@ -6,5 +6,5 @@ open class Destination(val route:String) {
     object Map: Destination("map")
     object Trip: Destination("trip")
     object BusDetail: Destination("busdetail")
-    object StopDetail: Destination("stopdetail")
+    object StopDetail: Destination("stopdetail/{stopID}")
 }

@@ -35,26 +35,21 @@ fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion, 
             .border(1.dp, Color.Black, shape = RoundedCornerShape(10.dp))
             .fillMaxSize()
             .padding(5.dp)
-    ){
-        Text(
-            text = "Bus Stops",
-            modifier = Modifier,
-            fontWeight = FontWeight.Bold,
-            color = (Color.White)
-        )
+    )
 
+    {
         Row(
             modifier = Modifier
                 .background((Color.DarkGray))
                 .fillMaxWidth()
                 .padding(15.dp)
                 .clickable {
-                    navController.navigate("stopdetail")
+                    navController.navigate("stopdetail/${stop.key}")
                 }
         ) {
             Text(
                 //text = "Stop 20254 - Eastbound Portage at Rouge",
-                text = stop.name.toString(),
+                text = "Stop ${stop.number.toString()} - ${stop.name.toString()}",
                 modifier = Modifier,
                 fontWeight = FontWeight.Bold,
                 color = (Color.White)
