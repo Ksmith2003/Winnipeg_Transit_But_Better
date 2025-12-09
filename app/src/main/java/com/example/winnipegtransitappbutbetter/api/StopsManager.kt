@@ -26,7 +26,7 @@ class StopsManager {
     init{
         getStops()
     }
-    private fun getStops(){
+    fun getStops(){
         val service = Api.retrofitService.getBusStops(
             lon = -97.138475,
             lat= 49.895493,
@@ -41,6 +41,8 @@ class StopsManager {
             ) {
                 if (response.isSuccessful){
                     val list = response.body()?.stops ?: emptyList()
+                    val NewStop = StopData("00:00", list)
+                    //_stopsResponse = listOf<StopData>(NewStop) as MutableState<List<StopData>>
                     Log.i("DataStream", list.toString())
                 }
                 else {
@@ -58,10 +60,6 @@ class StopsManager {
 
         }
         )
-
-
-
-
 
     }
 }

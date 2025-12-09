@@ -27,12 +27,14 @@ import com.example.winnipegtransitappbutbetter.api.StopsManager
 
 // This will eventually show nearby bus stops
 
-private val List<Stop?>?.name: Any
+
+private val List<Stop?>?.name: String?
     get() = this!!::class.java.simpleName
 
 @Composable
 fun StopsScreen(navController: NavHostController, modifier: Modifier, stopsManager: StopsManager) {
     val stops = stopsManager.stopsResponse
+    Log.i("asdf:", "${stops}")
 
     Box(
         modifier
@@ -45,7 +47,7 @@ fun StopsScreen(navController: NavHostController, modifier: Modifier, stopsManag
         LazyColumn {
             items(stops) {stop->
                 StopCard(StopItem =stop, navController =navController,modifier)
-                Log.i("DataStream:", "${stop.stops.name}}")
+                Log.i("asdf:", "${stop.stops.name}}")
             }
         }
 
