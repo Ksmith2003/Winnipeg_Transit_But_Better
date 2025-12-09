@@ -17,7 +17,7 @@ import retrofit2.Response
 
 class StopsManager {
     private var _stopsResponse= mutableStateOf<List<Stop>>(emptyList())
-    val api_key="-LkeFUZj8srrBV0Hj4fy"
+    val api_key="replace my api key"
 
     val stopsResponse: MutableState<List<Stop>>
         @Composable get() = remember {
