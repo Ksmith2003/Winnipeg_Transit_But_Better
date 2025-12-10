@@ -24,6 +24,7 @@ import com.example.winnipegtransitappbutbetter.Screens.StopsScreen
 import com.example.winnipegtransitappbutbetter.Screens.TripsScreen
 import com.example.winnipegtransitappbutbetter.api.StopsManager
 import com.example.winnipegtransitappbutbetter.api.RoutesManager
+import com.example.winnipegtransitappbutbetter.db.AppDatabase
 import com.example.winnipegtransitappbutbetter.ui.theme.WinnipegTransitAppButBetterTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,6 +36,9 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val stopsManager = StopsManager()
                 val routesManager = RoutesManager()
+                val db = AppDatabase.getInstance(applicationContext)
+
+
 
                 Scaffold(
                     bottomBar = {
@@ -64,7 +68,8 @@ class MainActivity : ComponentActivity() {
                             StopsScreen(
                                 modifier = Modifier,
                                 navController = navController,
-                                stopsManager = stopsManager
+                                stopsManager = stopsManager,
+                                database = db
                             )
                         }
 

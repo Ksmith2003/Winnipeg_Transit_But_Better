@@ -1,5 +1,6 @@
 package com.example.winnipegtransitappbutbetter.Screens
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,6 +25,10 @@ import androidx.navigation.NavHostController
 import com.example.winnipegtransitappbutbetter.api.Model.cow_data.Stop
 
 import com.example.winnipegtransitappbutbetter.api.StopsManager
+import com.example.winnipegtransitappbutbetter.db.AppDatabase
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 // This will eventually show nearby bus stops
 
@@ -72,10 +77,16 @@ fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion, 
     }
 }
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun StopsScreen(navController: NavHostController, modifier: Modifier, stopsManager: StopsManager) {
+fun StopsScreen(navController: NavHostController, modifier: Modifier, stopsManager: StopsManager, database: AppDatabase) {
     val stops = stopsManager.stopsResponse.value
     Log.i("MJB", stops.toString())
+
+    // database is appearing but need to populate it with api response.
+    GlobalScope.launch {
+        database.WTDao().getAllStops()
+    }
 
     Box(
         modifier

@@ -7,18 +7,18 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName="stops")
 data class Stop(
-    @SerializedName("centre")
-    val centre: Centre?,
-    @SerializedName("cross-street")
-    val crossStreet: CrossStreet?,
+//    @SerializedName("centre")
+//    val centre: Centre?,
+//    @SerializedName("cross-street")
+//    val crossStreet: CrossStreet?,
     @SerializedName("direction")
     val direction: String?,
-    @SerializedName("distances")
-    val distances: Distances?,
+//    @SerializedName("distances")
+//    val distances: Distances?,
 
     @PrimaryKey
     @SerializedName("key")
-    val key: Int?,
+    val key: Int,
 
     @SerializedName("name")
     val name: String?,
@@ -26,6 +26,6 @@ data class Stop(
     val number: Int?,
     @SerializedName("side")
     val side: String?,
-    @SerializedName("street")
-    val street: Street?
+//    @SerializedName("street")
+//    val street: Street?
 )
