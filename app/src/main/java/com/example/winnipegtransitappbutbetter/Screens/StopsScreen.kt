@@ -16,14 +16,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.winnipegtransitappbutbetter.api.Model.cow_data.Stop
-import com.example.winnipegtransitappbutbetter.api.Model.cow_data.StopData
+
 import com.example.winnipegtransitappbutbetter.api.StopsManager
 
 // This will eventually show nearby bus stops

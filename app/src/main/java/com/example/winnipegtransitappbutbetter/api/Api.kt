@@ -20,4 +20,8 @@ object Api {
     val retrofitService: StopsService by lazy {
         retrofit.create(StopsService::class.java)
     }
+
+    val retrofitService2: RoutesService by lazy {
+        retrofit.create(RoutesService::class.java)
+    }
 }

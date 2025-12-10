@@ -23,6 +23,7 @@ import com.example.winnipegtransitappbutbetter.Screens.StopDetailScreen
 import com.example.winnipegtransitappbutbetter.Screens.StopsScreen
 import com.example.winnipegtransitappbutbetter.Screens.TripsScreen
 import com.example.winnipegtransitappbutbetter.api.StopsManager
+import com.example.winnipegtransitappbutbetter.api.RoutesManager
 import com.example.winnipegtransitappbutbetter.ui.theme.WinnipegTransitAppButBetterTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,6 +34,7 @@ class MainActivity : ComponentActivity() {
             WinnipegTransitAppButBetterTheme {
                 val navController = rememberNavController()
                 val stopsManager = StopsManager()
+                val routesManager = RoutesManager()
 
                 Scaffold(
                     bottomBar = {
@@ -69,7 +71,8 @@ class MainActivity : ComponentActivity() {
                         composable(Destination.Bus.route) {
                             BusesScreen(
                                 modifier = Modifier,
-                                navController = navController
+                                navController = navController,
+                                routesManager = routesManager
                             )
                         }
 
