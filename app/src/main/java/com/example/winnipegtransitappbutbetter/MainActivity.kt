@@ -9,6 +9,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,6 +26,7 @@ import com.example.winnipegtransitappbutbetter.Screens.MapScreen
 import com.example.winnipegtransitappbutbetter.Screens.StopDetailScreen
 import com.example.winnipegtransitappbutbetter.Screens.StopsScreen
 import com.example.winnipegtransitappbutbetter.Screens.TripsScreen
+import com.example.winnipegtransitappbutbetter.api.Model.cow_data.Stop
 import com.example.winnipegtransitappbutbetter.api.StopsManager
 import com.example.winnipegtransitappbutbetter.ui.theme.WinnipegTransitAppButBetterTheme
 
@@ -80,10 +85,29 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-                        composable(Destination.StopDetail.route) {
+                        composable(Destination.StopDetail.route) {navBackStackEntry->
+                            var stop by remember {
+                                mutableStateOf<Stop?>(null)
+                            }
+                            //val movie_id:String?  = navBackStackEntry.arguments?.getString("movieID")
+
+                            //Log.i("MJB", movie_id.toString() )
+                            val s = Stop(
+                                name = stop?.name,
+                                centre = stop?.centre,
+                                crossStreet = stop?.crossStreet,
+                                direction = stop?.direction,
+                                distances = stop?.distances,
+                                key = stop?.key,
+                                number = stop?.number,
+                                side = stop?.side,
+                                street = stop?.street
+                            )
                             StopDetailScreen(
                                 modifier = Modifier,
-                                navController = navController
+                                stop = s,
+                                navController = navController,
+                                stopsManager = stopsManager
                             )
                         }
                     }
