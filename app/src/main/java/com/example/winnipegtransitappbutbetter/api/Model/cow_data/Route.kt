@@ -6,8 +6,6 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName="routes")
     data class Route(
-        @PrimaryKey
-        val pk_key: Int,
         @SerializedName("badge-label")
         val badgeLabel: Int?,
         //@SerializedName("badge-style")
@@ -16,8 +14,12 @@ import com.google.gson.annotations.SerializedName
         val coverage: String?,
         @SerializedName("customer-type")
         val customerType: String?,
+
+        @PrimaryKey
         @SerializedName("key")
-        val key: String?,
+        val key: String,
+
+
         @SerializedName("name")
         val name: String?,
         @SerializedName("number")
