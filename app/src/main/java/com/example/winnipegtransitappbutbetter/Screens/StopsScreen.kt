@@ -1,5 +1,6 @@
 package com.example.winnipegtransitappbutbetter.Screens
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -11,6 +12,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,69 +22,88 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.winnipegtransitappbutbetter.api.Model.cow_data.Stop
+
 import com.example.winnipegtransitappbutbetter.api.StopsManager
+import com.example.winnipegtransitappbutbetter.db.AppDatabase
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 // This will eventually show nearby bus stops
 
 @Composable
-fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion) {
+fun BusStopCard(navController: NavHostController, modifier: Modifier.Companion, stop: Stop) {
     Column(
         modifier = Modifier
-            .border(1.dp, Color.Black, shape= RoundedCornerShape(10.dp))
+            .border(1.dp, Color.Black, shape = RoundedCornerShape(10.dp))
             .fillMaxSize()
             .padding(5.dp)
-    ){
-        Text(
-            text = "Bus Stops",
-            modifier = Modifier,
-            fontWeight = FontWeight.Bold,
-            color = (Color.White)
-        )
+    )
 
+    {
         Row(
             modifier = Modifier
                 .background((Color.DarkGray))
                 .fillMaxWidth()
                 .padding(15.dp)
-                .clickable{
-                    navController.navigate("stopdetail")
+                .clickable {
+                    navController.navigate("stopdetail/${stop.key}")
                 }
         ) {
             Text(
-                text = "Stop 20254 - Eastbound Portage at Rouge",
+                //text = "Stop 20254 - Eastbound Portage at Rouge",
+                text = "Stop ${stop.number.toString()} - ${stop.name.toString()}",
                 modifier = Modifier,
                 fontWeight = FontWeight.Bold,
                 color = (Color.White)
             )
         }
+
         Spacer(modifier = Modifier.padding(5.dp))
-        Row(
-            modifier = Modifier
-                .background((Color.DarkGray))
-                .fillMaxWidth()
-                .padding(15.dp),
-        ) {
-            Text(
-                text = "Stop 20237 - Westbound Portage at Rouge",
-                modifier = Modifier,
-                fontWeight = FontWeight.Bold,
-                color = (Color.White)
-            )
-        }
+//        Row(
+//            modifier = Modifier
+//                .background((Color.DarkGray))
+//                .fillMaxWidth()
+//                .padding(15.dp),
+//        ) {
+//            Text(
+//                text = "Stop 20237 - Westbound Portage at Rouge",
+//                modifier = Modifier,
+//                fontWeight = FontWeight.Bold,
+//                color = (Color.White)
+//            )
+//        }
     }
 }
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun StopsScreen(navController: NavHostController, modifier: Modifier, stopsManager: StopsManager) {
+fun StopsScreen(navController: NavHostController, modifier: Modifier, stopsManager: StopsManager, database: AppDatabase) {
+    val stops = stopsManager.stopsResponse.value
+    Log.i("MJB", stops.toString())
+
+    // database is appearing but need to populate it with api response.
+    GlobalScope.launch {
+        database.WTDao().getAllStops()
+    }
+
     Box(
         modifier
             .fillMaxSize()
             .background(Color.Black)
     ){
-        BusStopCard(
-            navController = navController,
-            modifier = Modifier
-        )
+
+        LazyColumn {
+            items(stops){
+                stop->
+                BusStopCard(
+                    navController = navController,
+                    modifier = Modifier,
+                    stop
+                )
+            }
+        }
 
     }
 }

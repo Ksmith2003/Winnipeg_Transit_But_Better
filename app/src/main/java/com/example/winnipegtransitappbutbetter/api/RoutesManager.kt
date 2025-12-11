@@ -6,41 +6,36 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.example.winnipegtransitappbutbetter.BuildConfig
-import com.example.winnipegtransitappbutbetter.api.Model.cow_data.Stop
-import com.example.winnipegtransitappbutbetter.api.Model.cow_data.StopData
+import com.example.winnipegtransitappbutbetter.api.Model.cow_data.Route
+import com.example.winnipegtransitappbutbetter.api.Model.cow_data.RouteData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class StopsManager {
-    private var _stopsResponse= mutableStateOf<List<Stop>>(emptyList())
+class RoutesManager {
+    private var _routesResponse= mutableStateOf<List<Route>>(emptyList())
     val api_key= BuildConfig.WT_API_KEY
 
-    val stopsResponse: MutableState<List<Stop>>
+    val routesResponse: MutableState<List<Route>>
         @Composable get() = remember {
-            _stopsResponse
+            _routesResponse
         }
-    init{
-        getStops()
+    init {
+        getRoutes()
     }
-    private fun getStops(){
-        val service = Api.retrofitService.getBusStops(
-            lon = -97.138475,
-            lat= 49.895493,
-            distance= 250,
+
+    private fun getRoutes(){
+        val service = Api.retrofitService2.getBusRoutes(
             api_key
         )
-
-        service.enqueue( object: Callback<StopData>{
+        service.enqueue( object: Callback<RouteData>{
             override fun onResponse(
-                call: Call<StopData?>,
-                response: Response<StopData?>
+                call: Call<RouteData?>,
+                response: Response<RouteData?>
             ) {
                 if (response.isSuccessful){
-                    //val list = response.body()?.stops ?: emptyList()
-
-                    _stopsResponse.value = (response.body()?.stops ?: emptyList()) as List<Stop>
-                    Log.i("DataStream", _stopsResponse.value.toString())
+                    _routesResponse.value = (response.body()?.routes ?: emptyList()) as List<Route>
+                    Log.i("DataStream", _routesResponse.value.toString())
                 }
                 else {
                     Log.e("API", "Error: ${response.errorBody()?.string()}")
@@ -48,7 +43,7 @@ class StopsManager {
             }
 
             override fun onFailure(
-                call: Call<StopData?>,
+                call: Call<RouteData?>,
                 t: Throwable
             ) {
                 Log.d("error","${t.message}")
@@ -57,5 +52,7 @@ class StopsManager {
 
         }
         )
+
+
     }
 }

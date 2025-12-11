@@ -1,6 +1,7 @@
-package com.example.winnipegtransitappbutbetter.api.Model
+package com.example.winnipegtransitappbutbetter.api.Model.old
 
 
+import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -9,10 +10,8 @@ data class StopResponse(
 )
 @JsonClass(generateAdapter = true)
 data class StopData(
-    @Json(name = "query-time")
-    var queryTime: String?,
-    @Json(name = "stops")
-    var stops: List<Stop?>?
+    @SerializedName("query_time") val queryTime: Long?,
+    @SerializedName("stops") val stops: List<Stop>?
 ) {
     @JsonClass(generateAdapter = true)
     data class Stop(
