@@ -28,14 +28,14 @@ interface WTDao {
     suspend fun delete(stop:Stop)
     // DELETE from movies where movieId = {MovieId}
 
-    @Query("SELECT * FROM Routes")
+    @Query("SELECT * FROM Stops")
     fun getAllStops() : List<Stop>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllRoutes(routes: List<Route>)
 
     @Query("SELECT * FROM routes WHERE key = :key")
-    fun getRouteByKey(key:Int):Stop?
+    fun getRouteByKey(key: String):Route?
 
     @Update
     fun updateRouteState(route:Route)
