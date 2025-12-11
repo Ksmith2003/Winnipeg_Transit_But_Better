@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val db = AppDatabase.getInstance(applicationContext)
                 val stopsManager = StopsManager(db)
-                val routesManager = RoutesManager()
+                val routesManager = RoutesManager(db)
 
 
 
@@ -78,7 +78,8 @@ class MainActivity : ComponentActivity() {
                             BusesScreen(
                                 modifier = Modifier,
                                 navController = navController,
-                                routesManager = routesManager
+                                routesManager = routesManager,
+                                database = db
                             )
                         }
 
