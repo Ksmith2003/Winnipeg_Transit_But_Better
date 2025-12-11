@@ -54,7 +54,7 @@ fun BusRouteCard(navController: NavHostController, modifier: Modifier.Companion,
         ) {
             Text(
                 //text = "Stop 20254 - Eastbound Portage at Rouge",
-                text = "Route ${route.number.toString()} - ${route.name.toString()}",
+                text = route.name.toString(),
                 modifier = Modifier,
                 fontWeight = FontWeight.Bold,
                 color = (Color.White)
