@@ -12,7 +12,7 @@ import com.example.winnipegtransitappbutbetter.api.Model.cow_data.Stop
 interface WTDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertaAllStops(stops: List<Stop>)
+    fun insertAllStops(stops: List<Stop>)
 
     @Query("SELECT * FROM stops WHERE key = :key")
     fun getStopByKey(key:Int):Stop?

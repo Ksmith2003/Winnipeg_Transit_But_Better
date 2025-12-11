@@ -34,9 +34,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             WinnipegTransitAppButBetterTheme {
                 val navController = rememberNavController()
-                val stopsManager = StopsManager()
-                val routesManager = RoutesManager()
                 val db = AppDatabase.getInstance(applicationContext)
+                val stopsManager = StopsManager(db)
+                val routesManager = RoutesManager()
+
 
 
 
